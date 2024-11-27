@@ -1,0 +1,6 @@
+npm create vite@latest --template react-ts
+npm install
+npm install axios
+
+npm install react react-dom
+npm install --save-dev @types/react @types/react-dom

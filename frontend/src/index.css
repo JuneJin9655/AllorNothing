@@ -1,0 +1,24 @@
+:root {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  color: white;
+  background-color: #2b2d42;
+  line-height: 1.5;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #2b2d42, #8d99ae);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+}

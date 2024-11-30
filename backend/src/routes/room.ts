@@ -1,15 +1,32 @@
 import { Router, Request, Response } from "express";
 import Room from '../models/Room';
-import authMiddleware from "../middlerware/authMiddleware";
+import authMiddleware from "../middleware/authMiddleware";
 import User from '../models/User';
+import mongoose from "mongoose";
 import { error } from "console";
 
 const router = Router();
 
+router.get('/rooms', authMiddleware, async (req: Request, res: Response) => {
+  try{
+    
+    const rooms = await Room.find().select("roomId host players status");
+    res.status(200).json({ success: true, rooms});
+  }catch(err){
+    console.error("Error fetching rooms:", err);
+    res.status(500).json({ success: false, error: "Internal server error"});
+  }
+});
+
+
 //create room
 router.post('/create', authMiddleware, async (req: Request, res: Response):Promise<void> => {
   try{
-    const { userId } = req.user?.userId;;
+    const userId  = req.user?.userId; // JWT里的ID的命名与这个不一致发生了错误。
+    if (!userId) {
+      res.status(401).json({ error: 'Unauthorized: Missing userId' });
+      return;
+    }
     const host = await User.findById(userId);
 
     if(!host){
@@ -23,9 +40,10 @@ router.post('/create', authMiddleware, async (req: Request, res: Response):Promi
       host: host._id,
       players: [host._id],
     });
+    const savedRoom = await room.save();
+     // 调试保存结果
+    res.status(201).json({ success: true, savedRoom });
 
-    await room.save();
-    res.status(201).json({ success: true, room });
   }catch(err){
     console.error('Error creating room', err);
     res.status(500).json({ success: false, error: 'Internal server error'});
@@ -35,7 +53,7 @@ router.post('/create', authMiddleware, async (req: Request, res: Response):Promi
 //加入房间
 router.post('/join', authMiddleware, async (req: Request, res: Response):Promise<void> => {
   try {
-    const { userId } = req.user?.userId;
+    const userId = (req.user as { userId: string })?.userId
 
     if (!userId) {
       res.status(401).json({ success: false, error: 'Unauthorized' });
@@ -43,8 +61,13 @@ router.post('/join', authMiddleware, async (req: Request, res: Response):Promise
     }
 
     const { roomId } = req.body;
+
+    if (!roomId || typeof roomId !== 'string') {
+      res.status(400).json({ success: false, error: 'Invalid roomId' });
+      return;
+    }
+
     const room = await Room.findOne({ roomId });
-    
     if(!room){
       res.status(404).json({ success: false, error: 'Room not found'});
       return;
@@ -55,17 +78,19 @@ router.post('/join', authMiddleware, async (req: Request, res: Response):Promise
       return;
     }
 
-    if(!room.players.includes(userId)){
-      room.players.push(userId);
-      await room.save();
-    }
+    const objectId = new mongoose.Types.ObjectId(userId);
 
-    res.status(200).json({ success: true, room });
+    await Room.updateOne({ roomId }, { $addToSet: { players: objectId } });
+
+    // 再次查询以返回更新后的数据
+    const updatedRoom = await Room.findOne({ roomId });
+
+    res.status(200).json({ success: true, room: updatedRoom });
   } catch (error) {
-    console.error('Error joining room:', error);
-    res.status(500).json({ success: false, error: 'Internal server error'});
+    console.error('Error joining room:', { error });
+    res.status(500).json({ success: false, error: 'Internal server error' });
   }
-})
+});
 
 router.post('/leave', authMiddleware, async(req: Request, res: Response):Promise<void> => {
   try{

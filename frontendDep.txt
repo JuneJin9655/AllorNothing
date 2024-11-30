@@ -4,3 +4,9 @@ npm install axios
 
 npm install react react-dom
 npm install --save-dev @types/react @types/react-dom
+
+
+npm install socket.io-client
+npm install axios
+npm install --save-dev @types/axios
+

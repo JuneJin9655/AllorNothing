@@ -41,3 +41,66 @@
 2024-11-27T07:21:23.270Z [INFO]: Server is running on http://localhost:4000
 2024-11-27T07:30:25.751Z [INFO]: Server is running on http://localhost:4000
 2024-11-27T07:50:27.824Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T06:12:21.902Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T06:23:42.886Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T06:28:45.903Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T06:29:11.681Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T06:30:38.361Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T06:30:58.379Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T06:31:01.541Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T06:31:26.613Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T06:33:07.620Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T06:33:20.781Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T06:34:34.247Z [ERROR]: SyntaxError: Bad control character in string literal in JSON at position 60 (line 3 column 29)
+    at JSON.parse (<anonymous>)
+    at parse (G:\AllorNothing\backend\node_modules\body-parser\lib\types\json.js:92:19)
+    at G:\AllorNothing\backend\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)
+    at invokeCallback (G:\AllorNothing\backend\node_modules\raw-body\index.js:238:16)
+    at done (G:\AllorNothing\backend\node_modules\raw-body\index.js:227:7)
+    at IncomingMessage.onEnd (G:\AllorNothing\backend\node_modules\raw-body\index.js:287:7)
+    at IncomingMessage.emit (node:events:518:28)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+2024-11-29T06:36:50.734Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T07:42:10.292Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T07:48:00.761Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T07:50:37.824Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T07:51:22.288Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T07:51:26.541Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T07:52:07.827Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T07:52:21.007Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T07:53:58.122Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T07:54:27.278Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T07:54:47.848Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T07:54:52.069Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T07:55:17.565Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T07:55:18.611Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T07:59:02.249Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T07:59:36.762Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T07:59:46.747Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T08:00:21.012Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T08:00:54.288Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T08:01:10.334Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T08:03:15.330Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T08:03:22.979Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T08:04:18.463Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T08:16:26.586Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T18:54:51.103Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T18:56:24.659Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T18:58:08.558Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T18:59:48.201Z [INFO]: Server is running on http://localhost:4000
+2024-11-29T23:43:26.042Z [INFO]: Server is running on http://localhost:4000
+2024-11-30T01:22:55.153Z [INFO]: Server is running on http://localhost:4000
+2024-11-30T03:23:10.660Z [INFO]: Server is running on http://localhost:4000
+2024-11-30T03:23:25.038Z [INFO]: Server is running on http://localhost:4000
+2024-11-30T03:23:32.475Z [INFO]: Server is running on http://localhost:4000
+2024-11-30T03:25:41.918Z [INFO]: Server is running on http://localhost:4000
+2024-11-30T03:26:35.560Z [INFO]: Server is running on http://localhost:4000
+2024-11-30T03:27:26.733Z [INFO]: Server is running on http://localhost:4000
+2024-11-30T03:27:34.194Z [INFO]: Server is running on http://localhost:4000
+2024-11-30T03:27:54.649Z [INFO]: Server is running on http://localhost:4000
+2024-11-30T03:28:31.210Z [INFO]: Server is running on http://localhost:4000
+2024-11-30T03:29:37.407Z [INFO]: Server is running on http://localhost:4000
+2024-11-30T03:39:05.377Z [INFO]: Server is running on http://localhost:4000
+2024-11-30T06:11:07.408Z [INFO]: Server is running on http://localhost:4000

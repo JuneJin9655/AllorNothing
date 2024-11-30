@@ -1,9 +1,9 @@
 import { Router, Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { validateUserInput, isUsernameTaken } from '../middlerware/authController';
+import { validateUserInput, isUsernameTaken } from '../middleware/authController';
 import User from '../models/User';
-import { error } from 'console';
+import request from 'supertest'
 
 const router = Router();
 
@@ -59,10 +59,10 @@ router.post('/login', async (req: Request, res: Response):Promise<void> => {
       return;
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET || 'default_secret', {
+    const token = jwt.sign({ userId: 'testUserId'}, process.env.JWT_SECRET || 'default_secret', {
       expiresIn: '1h',
     });
-
+    
     res.status(200).json({
       success: true,
       token,

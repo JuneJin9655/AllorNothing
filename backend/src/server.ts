@@ -4,10 +4,11 @@ import cors from 'cors'; //跨域问题
 import connectDB from './utils/db';//封装函数用于数据库连接
 import logger from './utils/logger';//日志工具，记录服务器运行时信息错误
 import config from './config';//配置模块，管理环境变量（端口号，URI等等）
-import roomRoutes from './routes/room'
 
 // 路由模块
 import authRoutes from './routes/auth';
+import roomRoutes from './routes/room';
+
 
 // 初始化应用
 const app: Application = express();
@@ -19,7 +20,9 @@ app.use(express.json()); // 解析 JSON 请求体
 app.use(express.urlencoded({ extended: true })); // 解析 URL 编码数据
 
 // 连接数据库
-connectDB(config.MONGO_URI);
+if(process.env.NODE_ENV !== 'test'){
+  connectDB(config.MONGO_URI);
+}
 
 // 注册路由
 app.use('/api/auth', authRoutes); // 认证路由
@@ -40,4 +43,9 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
 });
 
 // 启动服务器
+if(process.env.NODE_ENV !== 'test'){
 app.listen(PORT, () => logger.info(`Server is running on http://localhost:${PORT}`));
+
+}
+
+export default app;

@@ -26,3 +26,27 @@ tsconfig:
 
 
 dbpath: "D:\mongo\mongodb-win32-x86_64-windows-8.0.3\data\db"
+
+npm install --save-dev supertest
+npm install --save-dev @types/supertest
+npm install --save-dev jest @types/jest ts-jest
+npm install --save-dev @testing-library/jest-dom
+tsconfig needs include "src/jest.setup.ts"
+jest test
+
+
+JOIN 出现的问题：
+问题分析
+类型不匹配问题：
+
+在 Mongoose 模型中，room.players 被定义为一个 ObjectId 类型数组。
+但在代码中，userId 是一个 string 类型。
+TypeScript 强制检查类型，当 string 被传递给需要 ObjectId 的地方时，就会报错。
+Mongoose 的 ObjectId：
+
+MongoDB 的 _id 字段和关联字段（如 players）通常使用 ObjectId 类型。
+ObjectId 是 Mongoose 对 MongoDB 的 _id 的封装，不等同于 string，即使看起来像是字符串。
+核心错误：
+
+if (!room.players.includes(userId)) 和 room.players.push(userId) 中，userId 的类型是 string，与 ObjectId 不匹配。
+TypeScript 检查到不匹配后，抛出了类型错误。

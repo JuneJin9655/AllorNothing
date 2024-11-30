@@ -9,9 +9,9 @@ const cors_1 = __importDefault(require("cors")); //跨域问题
 const db_1 = __importDefault(require("./utils/db")); //封装函数用于数据库连接
 const logger_1 = __importDefault(require("./utils/logger")); //日志工具，记录服务器运行时信息错误
 const config_1 = __importDefault(require("./config")); //配置模块，管理环境变量（端口号，URI等等）
-const room_1 = __importDefault(require("./routes/room"));
 // 路由模块
 const auth_1 = __importDefault(require("./routes/auth"));
+const room_1 = __importDefault(require("./routes/room"));
 // 初始化应用
 const app = (0, express_1.default)();
 const PORT = config_1.default.PORT;
@@ -20,7 +20,9 @@ app.use((0, cors_1.default)()); // 跨域
 app.use(express_1.default.json()); // 解析 JSON 请求体
 app.use(express_1.default.urlencoded({ extended: true })); // 解析 URL 编码数据
 // 连接数据库
-(0, db_1.default)(config_1.default.MONGO_URI);
+if (process.env.NODE_ENV !== 'test') {
+    (0, db_1.default)(config_1.default.MONGO_URI);
+}
 // 注册路由
 app.use('/api/auth', auth_1.default); // 认证路由
 app.use('/api/room', room_1.default); // 房间路由
@@ -37,4 +39,7 @@ app.use((err, req, res, next) => {
     });
 });
 // 启动服务器
-app.listen(PORT, () => logger_1.default.info(`Server is running on http://localhost:${PORT}`));
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(PORT, () => logger_1.default.info(`Server is running on http://localhost:${PORT}`));
+}
+exports.default = app;
